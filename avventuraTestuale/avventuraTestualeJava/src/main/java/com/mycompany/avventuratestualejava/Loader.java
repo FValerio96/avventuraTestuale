@@ -16,17 +16,17 @@ import java.util.HashMap;
  * @author flava
  */
 public class Loader {
-
+    
     @SuppressWarnings("unchecked")
     //carica il dizionario dalla directory, poi con Map.class lo deserializza
     //come oggetto Map
     public static Map<String, List<String>> loadDictionary(String dictionary) {
         try {
             return new Gson().fromJson(new FileReader(
-                    "src\\main\\java\\com\\mycompany\\resources\\dictionary\\" + dictionary + ".json"),
+                    "src\\main\\java\\com\\mycompany\\resources\\dictionaries\\" + dictionary + ".json"),
                     Map.class);
         } catch (IOException e) {
-            System.out.println("non ho ritornato niente");
+            System.out.println("errore nel caricamento del dizionario " + dictionary);
             return null;
         }
 
