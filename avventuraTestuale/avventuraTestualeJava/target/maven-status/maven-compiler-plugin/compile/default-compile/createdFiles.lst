@@ -1,0 +1,9 @@
+com\mycompany\avventuratestualejava\AvventuraTestualeJava.class
+com\mycompany\avventuratestualejava\action\Directions.class
+com\mycompany\avventuratestualejava\action\Noun.class
+com\mycompany\gameObjects\Room.class
+com\mycompany\avventuratestualejava\Parser.class
+com\mycompany\manager\Engine.class
+com\mycompany\avventuratestualejava\Loader.class
+com\mycompany\utilities\JsonReader.class
+com\mycompany\manager\GameManager.class
