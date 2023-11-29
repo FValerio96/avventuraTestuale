@@ -51,3 +51,24 @@ rendi stopword una lista e caricala da json facendo apposita funzione nel loadde
 nel launcher sto splittando tra nuova e carica partita(da gestire dopo)
 
 devi, semplicemente, gestire lo spostamento e le azioni partendo da una corretta definizione di checkwords.
+checkWords = metodo di ritrovamento dell'azione da compiere nel gioco, suddiviso in
+1.spostamento 
+2. azione 
+3. azione su oggetto TO DO
+ad 1, 2 e 3 corrisponderò una chiamata ad un metodo di GameManager che gestisce gli avvenimenti. 
+(Studia bene come concatenare il passaggio del controllo tra le due classi)
+
+parti dal pressuposto che ora il parser fornisce una ArrayList di parole minuscole senza stopword
+
+allora, il gamemanager in un ciclo infinito esegue ad ogni iterazione parsergame fornendogli l'input
+parser game restituisce il comando che corrisponderà alle chiavi dei dizionari, 
+quindi i sinonimi interessano solo al parser e il gamemanager se ne disinteressa.
+
+gestisci il gamemanager e le room, 
+devi capire come gestire le room e l'occorrenza della current room
+idea: current room int 
+e introduzione del metodo che dato l'id di una room ti stampa la descrizione, in futuro servirà questo metodo anche per avere
+gli npc e items nella stanza. ottimo lavoro !
+
+
+

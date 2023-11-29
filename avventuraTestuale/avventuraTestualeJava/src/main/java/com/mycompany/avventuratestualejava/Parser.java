@@ -1,5 +1,6 @@
 package com.mycompany.avventuratestualejava;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -8,40 +9,31 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private Map<String, List<String>> stopWord;
+    private ArrayList<String> stopWord;
+    private Map<String, List<String>> directions;
     private Map<String, List<String>> noObjAction;
     private Map<String, List<String>> ObjAction;
-    private String directionPattern = "(nord)|(sud)|(est)|(ovest)";
 
     public Parser() {
-        this.stopWord = Loader.loadDictionary("stopWord");
+        this.stopWord = Loader.loadList("stopWords");
+        this.directions = Loader.loadDictionary("directions");
         this.noObjAction = Loader.loadDictionary("noObjAction");
     }
 
     //main for testing
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Parser p = new Parser();
-        p.parserGame("Ciao osserva tutto");
+        p.parserGame("vai a north");
     }
-    public void parserGame(String input) {
+
+    public String parserGame(String input) {
         convertiInMinuscolo(input);
-        List<String> inputList = ottieniListaParole(input);
-        rimuoviStopword(inputList, stopWord);
-        for(String parola : inputList) {
-            System.out.println("word" + parola + "\n");
+        ArrayList<String> inputList = ottieniListaParole(input);
+        rimuoviStopword(inputList);
+        for (String parola : inputList) {
+            System.out.println(parola + "\n");
         }
-        
-        //System.out.println();
-        //System.out.println(checkWords(inputList));
-        
-    }
-
-    public Map<String, List<String>> getStopWord() {
-        return stopWord;
-    }
-
-    public void setStopWord(Map<String, List<String>> stopWord) {
-        this.stopWord = stopWord;
+        return checkWords(inputList);
     }
 
     public Map<String, List<String>> getNoObjAction() {
@@ -60,33 +52,34 @@ public class Parser {
         this.ObjAction = ObjAction;
     }
 
-    public String getDirectionPattern() {
-        return directionPattern;
-    }
-
-    public void setDirectionPattern(String directionPattern) {
-        this.directionPattern = directionPattern;
-    }
-
     private void convertiInMinuscolo(String input) {
-          input.toLowerCase();
+        input.toLowerCase();
     }
 
-    private List<String> ottieniListaParole(String frase) {
+    private ArrayList<String> ottieniListaParole(String frase) {
         String[] arrayParole = frase.split("\\s+");
-        List<String> listaParole = Arrays.asList(arrayParole);
+        ArrayList<String> listaParole = new ArrayList<>(Arrays.asList(arrayParole));
         return listaParole;
     }
 
-    private void rimuoviStopword(List<String> listaParole,
-            Map<String, List<String>> stopWord) {
-        for (List<String> stopWordsList : stopWord.values()) {
-            listaParole.removeAll(stopWordsList);
-        }
+    private void rimuoviStopword(ArrayList<String> listaParole) {
+        listaParole.removeAll(stopWord);
     }
 
     public String checkWords(List<String> inputWords) {
-        
-        return "ritenta";
+        for (Map.Entry<String, List<String>> entry : directions.entrySet()) {
+            String directionKey = entry.getKey();
+            List<String> directionValues = entry.getValue();
+
+            for (String inputWord : inputWords) {
+                if (directionValues.contains(inputWord)) {
+                    System.out.println("direzione " + directionKey);
+                    return directionKey;
+                }
+            }
+        }
+        return "ma come parli pirata?";
     }
+
+    
 }

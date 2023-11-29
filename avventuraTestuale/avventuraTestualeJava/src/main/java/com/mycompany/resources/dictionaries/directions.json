@@ -1,3 +1,23 @@
 {
-    "name": "flava"
+    "nord": [
+        "north",
+        "su",
+        "sali",
+        "sopra"
+    ],
+    "sud": [
+        "south",
+        "scendi",
+        "sotto"
+    ],
+    "est": [
+        "east",
+        "dx",
+        "destra"
+    ],
+    "ovest": [
+        "west",
+        "sx",
+        "sinistra"
+    ]
 }

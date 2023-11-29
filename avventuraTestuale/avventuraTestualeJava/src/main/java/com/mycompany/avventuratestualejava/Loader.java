@@ -9,14 +9,23 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  *
- * @author flava
+ * @author 
  */
 public class Loader {
-    
+
+    public static void main(String[] args) {
+        Map<String, List<String>> noObjAction = new HashMap<>();
+        noObjAction = Loader.loadDictionary("noObjAction");
+        printMap(noObjAction);
+    }
+
     @SuppressWarnings("unchecked")
     //carica il dizionario dalla directory, poi con Map.class lo deserializza
     //come oggetto Map
@@ -29,15 +38,31 @@ public class Loader {
             System.out.println("errore nel caricamento del dizionario " + dictionary);
             return null;
         }
-
     }
-
-    public static void main(String[] args) {
-        Map<String, List<String>> noObjAction = new HashMap<>();
-        noObjAction = Loader.loadDictionary("noObjAction");
-        printMap(noObjAction);
+    
+    public static ArrayList<String> loadList(String fileName) {
+        ArrayList<String> wordsList = new ArrayList<>();
+        String filePath = "src\\main\\java\\com\\mycompany\\resources\\fileTxt\\" + fileName + ".txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Divide la linea in parole utilizzando uno spazio come delimitatore
+                String[] words = line.split("\\s+");
+         
+                for (String word : words) {
+                    wordsList.add(word);
+                }
+            }
+        }catch (FileNotFoundException e) {
+            System.out.println("File non trovato: " + filePath);
+        } catch (IOException e) {
+            System.out.println("Errore durante il caricamento del file: " + filePath);
+        }
+        return wordsList;
     }
+    
 
+    //checker per il caricamente delle mappe
     public static void printMap(Map<String, List<String>> map) {
         if (map == null) {
             System.out.println("La mappa è null.");

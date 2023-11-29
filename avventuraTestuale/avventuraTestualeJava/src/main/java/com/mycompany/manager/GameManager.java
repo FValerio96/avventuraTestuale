@@ -10,6 +10,7 @@ import com.mycompany.utilities.JsonReader;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
@@ -20,17 +21,17 @@ import org.json.JSONException;
  */
 public class GameManager {
 
-    private static Room currentRoom;
+    private static int currentRoom;
     private static Map<Integer, Room> rooms;
-    //static Set<Direction> directions;
+    static Set<String> directions = Set.of("nord", "sud", "est", "ovest");
     //static Set<Npc> npcs;
     //static Set<Item> items;
     private static boolean isGameRunning = false;
     private static String input;
+    private static String comando;  
 
     public static void main(String[] args) throws JSONException, IOException {
         launcher();
-
     }
 
     public static void launcher() {
@@ -50,9 +51,25 @@ public class GameManager {
         while (true) {
             System.out.println("cosa vuoi fare capitano?");
             GameManager.input = scan.nextLine();
-            parser.parserGame(input);
+            comando = parser.parserGame(input);
+            
         }
 
+    }
+    
+    public static void comandoManager(String comando) {
+        if(directions.contains(comando)){
+            
+        }
+        
+    }
+    
+    public static void cambioStanza(String direzione) {
+        switch(direzione) {
+            case "nord":
+                currentRoom = currentRoom.getNord();
+            
+        }
     }
     
     public static void nuovaPartita(){
