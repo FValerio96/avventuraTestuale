@@ -39,6 +39,7 @@ public class GameManager {
         Scanner scan = new Scanner(System.in);
         try {
             JsonReader.roomsInit();
+            printRooms();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
@@ -52,29 +53,48 @@ public class GameManager {
             System.out.println("cosa vuoi fare capitano?");
             GameManager.input = scan.nextLine();
             comando = parser.parserGame(input);
-            
+            System.out.println(comando);
+            comandoManager(comando);
         }
-
     }
     
     public static void comandoManager(String comando) {
         if(directions.contains(comando)){
-            
+            cambioStanza(comando);
+            System.out.println(rooms.get(currentRoom).getDescription());         
         }
         
     }
     
     public static void cambioStanza(String direzione) {
+        int temp = currentRoom;
         switch(direzione) {
             case "nord":
-                currentRoom = currentRoom.getNord();
-            
+                currentRoom = rooms.get(currentRoom).getNord();
+                break;
+            case "sud":
+                currentRoom = rooms.get(currentRoom).getSud();
+                break;
+            case "est": 
+                currentRoom = rooms.get(currentRoom).getEst();
+                break;
+            case "ovest":
+                currentRoom = rooms.get(currentRoom).getOvest();
+                break;              
+        }
+        //gestione caso fuori mappa
+        if(currentRoom == 0) {
+            System.out.println("questa strada non mi porterà da nessuna parte.. \n resterò qui: \n");
+            currentRoom = temp;
         }
     }
     
+
     public static void nuovaPartita(){
-        currentRoom = rooms.get(1);
-        System.out.println(currentRoom.getDescription());
+        //inizio gioco nella prima stanza.
+        currentRoom = 1;
+        System.out.println(rooms.get(currentRoom).getDescription());
+        
     }
 
     public static void printRooms() {
@@ -82,16 +102,13 @@ public class GameManager {
         for (Map.Entry<Integer, Room> entry : rooms.entrySet()) {
             int roomId = entry.getKey();
             Room room = entry.getValue();
-            System.out.println("ID: " + roomId + ", Nome: " + room.getName() + ", Descrizione: " + room.getDescription());
+            System.out.println("ID: " + roomId + ", Nome: " + room.getName() + ", Descrizione: " + room.getDescription() +
+                    "nord:" + room.getNord() + "est: " + room.getEst() + "ovest: " + room.getOvest() + "sud: " + room.getSud());
         }
     }
 
-    public static Room getCurrentRoom() {
+    public static int getCurrentRoom() {
         return currentRoom;
-    }
-
-    public static void setCurrentRoom(Room currentRoom) {
-        GameManager.currentRoom = currentRoom;
     }
 
     public static Map<Integer, Room> getRooms() {

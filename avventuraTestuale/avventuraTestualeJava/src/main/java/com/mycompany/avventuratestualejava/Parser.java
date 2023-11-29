@@ -73,7 +73,8 @@ public class Parser {
 
             for (String inputWord : inputWords) {
                 if (directionValues.contains(inputWord)) {
-                    System.out.println("direzione " + directionKey);
+                    //delete me dopo aver testato tutto il codice
+                    //System.out.println("direzione " + directionKey);
                     return directionKey;
                 }
             }

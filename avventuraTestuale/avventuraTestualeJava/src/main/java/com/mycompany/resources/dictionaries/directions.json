@@ -3,21 +3,25 @@
         "north",
         "su",
         "sali",
-        "sopra"
+        "sopra",
+        "nord"
     ],
     "sud": [
         "south",
         "scendi",
-        "sotto"
+        "sotto",
+        "sud"
     ],
     "est": [
         "east",
         "dx",
-        "destra"
+        "destra",
+        "est"
     ],
     "ovest": [
         "west",
         "sx",
-        "sinistra"
+        "sinistra",
+        "ovest"
     ]
 }
