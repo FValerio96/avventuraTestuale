@@ -103,7 +103,7 @@ public class GameManager {
             int roomId = entry.getKey();
             Room room = entry.getValue();
             System.out.println("ID: " + roomId + ", Nome: " + room.getName() + ", Descrizione: " + room.getDescription() +
-                    "nord:" + room.getNord() + "est: " + room.getEst() + "ovest: " + room.getOvest() + "sud: " + room.getSud());
+                    ", nord:" + room.getNord() + ", est: " + room.getEst() + ", ovest: " + room.getOvest() + ", sud: " + room.getSud());
         }
     }
 
