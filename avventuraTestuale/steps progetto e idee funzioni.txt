@@ -71,4 +71,12 @@ e introduzione del metodo che dato l'id di una room ti stampa la descrizione, in
 gli npc e items nella stanza. ottimo lavoro !
 
 
+!!!INTERFACCIA!!!
+IMPLEMENTAZIONE DI DIVERSI METODI DI CARICA/SALVA ATTRAVERSO DIVERSI MODI: DB E UN ALTRO(ALLA PEGGIO SEGNALA LA POSSIBILITA' DI AGGIUNGERE
+IN FUTURO ALTRI METODI OFFLINE	
+
+!!!INSERISCI IL FILEMANAGER PER CLIENT/SERVER E THREAD!!!
+
+
+
 

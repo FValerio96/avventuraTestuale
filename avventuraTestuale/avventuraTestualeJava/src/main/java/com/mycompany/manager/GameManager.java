@@ -17,7 +17,6 @@ import org.json.JSONException;
 
 /**
  *
- * @author PPiC
  */
 public class GameManager {
 
@@ -39,22 +38,21 @@ public class GameManager {
         Scanner scan = new Scanner(System.in);
         try {
             JsonReader.roomsInit();
+            //aggiungi caricamento degli altri jsonObjects
             printRooms();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
             
-            //aggiungi caricamento degli altri jsonObjects
         } catch (JSONException | IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, "Errore durante l'inizializzazione delle stanze: {0}", ex.getMessage());
         }
-
         while (true) {
             System.out.println("cosa vuoi fare capitano?");
             GameManager.input = scan.nextLine();
             comando = parser.parserGame(input);
             System.out.println(comando);
-            comandoManager(comando);
+            comandoManager(comando);   
         }
     }
     
@@ -88,7 +86,6 @@ public class GameManager {
             currentRoom = temp;
         }
     }
-    
 
     public static void nuovaPartita(){
         //inizio gioco nella prima stanza.
