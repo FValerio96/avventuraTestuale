@@ -9,6 +9,18 @@ public abstract class Character {
     private final int id;
     private final int room;
 
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getRoom() {
+        return room;
+    }
+
     public Character(int id, int room, String name) {
         this.name = name;
         this.id = id;

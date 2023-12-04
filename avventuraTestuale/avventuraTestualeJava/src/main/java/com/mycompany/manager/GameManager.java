@@ -6,6 +6,7 @@ package com.mycompany.manager;
 
 import com.mycompany.avventuratestualejava.Parser;
 import com.mycompany.gameObjects.Room;
+import com.mycompany.gameObjects.Persona;
 import com.mycompany.utilities.JsonReader;
 import java.io.IOException;
 import java.util.Map;
@@ -21,13 +22,12 @@ import org.json.JSONException;
 public class GameManager {
 
     private static int currentRoom;
+    private static Map<Integer, Persona> npcs;
     private static Map<Integer, Room> rooms;
-    static Set<String> directions = Set.of("nord", "sud", "est", "ovest");
-    //static Set<Npc> npcs;
+    private static  final Set<String> directions = Set.of("nord", "sud", "est", "ovest");
     //static Set<Item> items;
-    private static boolean isGameRunning = false;
     private static String input;
-    private static String comando;  
+    private static String comando;
 
     public static void main(String[] args) throws JSONException, IOException {
         launcher();
@@ -38,12 +38,13 @@ public class GameManager {
         Scanner scan = new Scanner(System.in);
         try {
             JsonReader.roomsInit();
+            JsonReader.npcsInit();
             //aggiungi caricamento degli altri jsonObjects
-            printRooms();
+            printPersonas();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
-            
+
         } catch (JSONException | IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, "Errore durante l'inizializzazione delle stanze: {0}", ex.getMessage());
         }
@@ -52,46 +53,50 @@ public class GameManager {
             GameManager.input = scan.nextLine();
             comando = parser.parserGame(input);
             System.out.println(comando);
-            comandoManager(comando);   
+            comandoManager(comando);
         }
     }
-    
+
     public static void comandoManager(String comando) {
-        if(directions.contains(comando)){
+        if (directions.contains(comando)) {
             cambioStanza(comando);
-            System.out.println(rooms.get(currentRoom).getDescription());         
+            System.out.println(rooms.get(currentRoom).getDescription());
+        } else {
+            
+            
         }
         
+
     }
-    
+
     public static void cambioStanza(String direzione) {
         int temp = currentRoom;
-        switch(direzione) {
+        switch (direzione) {
             case "nord":
                 currentRoom = rooms.get(currentRoom).getNord();
                 break;
             case "sud":
                 currentRoom = rooms.get(currentRoom).getSud();
                 break;
-            case "est": 
+            case "est":
                 currentRoom = rooms.get(currentRoom).getEst();
                 break;
             case "ovest":
                 currentRoom = rooms.get(currentRoom).getOvest();
-                break;              
+                break;
         }
         //gestione caso fuori mappa
-        if(currentRoom == 0) {
+        if (currentRoom == 0) {
             System.out.println("questa strada non mi porterà da nessuna parte.. \n resterò qui: \n");
             currentRoom = temp;
         }
     }
 
-    public static void nuovaPartita(){
+    public static void nuovaPartita() {
         //inizio gioco nella prima stanza.
         currentRoom = 1;
         System.out.println(rooms.get(currentRoom).getDescription());
-        
+
     }
 
     public static void printRooms() {
@@ -99,11 +104,22 @@ public class GameManager {
         for (Map.Entry<Integer, Room> entry : rooms.entrySet()) {
             int roomId = entry.getKey();
             Room room = entry.getValue();
-            System.out.println("ID: " + roomId + ", Nome: " + room.getName() + ", Descrizione: " + room.getDescription() +
-                    ", nord:" + room.getNord() + ", est: " + room.getEst() + ", ovest: " + room.getOvest() + ", sud: " + room.getSud());
+            System.out.println("ID: " + roomId + ", Nome: " + room.getName() + ", Descrizione: " + room.getDescription()
+                    + ", nord:" + room.getNord() + ", est: " + room.getEst() + ", ovest: " + room.getOvest() + ", sud: " + room.getSud());
         }
     }
 
+    
+    public static void printPersonas() {
+        System.out.println("Lista degli npcs:");
+        for (Map.Entry<Integer, Persona> entry : npcs.entrySet()) {
+            int personaID = entry.getKey();
+            Persona persona = entry.getValue();
+            System.out.println("ID: " + personaID + ", Nome: "
+                    + persona.getName() + ", to say: " + persona.getToSay()
+                    + " room: " + persona.getRoom());
+        }
+    }
     public static int getCurrentRoom() {
         return currentRoom;
     }
@@ -116,16 +132,11 @@ public class GameManager {
         GameManager.rooms = rooms;
     }
 
-    public static boolean isIsGameRunning() {
-        return isGameRunning;
-    }
-
-    public static void setIsGameRunning(boolean isGameRunning) {
-        GameManager.isGameRunning = isGameRunning;
-    }
-
     public static void loadRooms(Map<Integer, Room> rooms) {
-        //read from a json file rooms and put them in the set
         GameManager.rooms = rooms;
+    }
+
+    public static void loadPersonas(Map<Integer, Persona> persona) {     
+        GameManager.npcs = persona;
     }
 }

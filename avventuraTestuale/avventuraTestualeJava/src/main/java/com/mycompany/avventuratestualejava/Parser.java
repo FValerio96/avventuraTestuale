@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Parser {
 
@@ -23,7 +22,6 @@ public class Parser {
     //main for testing
     public static void main(String[] args) {
         Parser p = new Parser();
-        p.parserGame("vai a north");
     }
 
     public String parserGame(String input) {

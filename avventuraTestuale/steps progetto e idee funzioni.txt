@@ -80,7 +80,11 @@ IN FUTURO ALTRI METODI OFFLINE
 04/12 
 introduzione kill: il pirata protagonista è un killer silenzioso, c'è possibilità di killare gli npc.
 
+!!!IDEE INTERFACCIA
+ 1. INSERIMENTO ANIMALI FRA LE ISOLE
+ 2. INSERIMENTO BARCHE 
+ 3. UPGRADE NPC TRA BUONI E CATTIVI, I BUONI SONO KILLABILI I CATTIVI NO PIù EVENUTALI ALTRE MODIFICHE
+ 4. INVENTARIO CHE SI DIVIDE IN INVENTARIO PLAYER E INVENTARIO COMMERCIANTI
 
-
-
-
+settare parla con npc controllando se l'npc è nella stanza (controllo esaustivo)
+si torna sul parser: spostamento di comandoManager nel parser

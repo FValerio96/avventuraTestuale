@@ -1,8 +1,16 @@
 [
     {
-        "String": "mi chiamo gianni",
-        "id" : 1,
-        "room" : 1,
+        "toSay": "mi chiamo gianni",
+        "id": 1,
+        "room": 2,
         "name": "Gianni"
+    },
+    {
+        "toSay": "Ciao sono gino",
+        "id": 2,
+        "room": 4,
+        "name": "Gino gestore porto"
     }
+
+
 ]
