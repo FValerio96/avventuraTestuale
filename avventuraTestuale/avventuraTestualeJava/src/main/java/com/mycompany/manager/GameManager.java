@@ -24,7 +24,7 @@ public class GameManager {
     private static int currentRoom;
     private static Map<Integer, Persona> npcs;
     private static Map<Integer, Room> rooms;
-    private static  final Set<String> directions = Set.of("nord", "sud", "est", "ovest");
+    private static final Set<String> directions = Set.of("nord", "sud", "est", "ovest");
     //static Set<Item> items;
     private static String input;
     private static String comando;
@@ -51,9 +51,9 @@ public class GameManager {
         while (true) {
             System.out.println("cosa vuoi fare capitano?");
             GameManager.input = scan.nextLine();
-            comando = parser.parserGame(input);
-            System.out.println(comando);
-            comandoManager(comando);
+            parser.parserGame(input);
+            //System.out.println(comando);
+            //comandoManager(comando);
         }
     }
 
@@ -62,10 +62,8 @@ public class GameManager {
             cambioStanza(comando);
             System.out.println(rooms.get(currentRoom).getDescription());
         } else {
-            
-            
+
         }
-        
 
     }
 
@@ -87,8 +85,11 @@ public class GameManager {
         }
         //gestione caso fuori mappa
         if (currentRoom == 0) {
-            System.out.println("questa strada non mi porterà da nessuna parte.. \n resterò qui: \n");
+            System.out.println("questa strada non mi porterà da nessuna "
+                    + "parte.. \n resterò qui: \n");
             currentRoom = temp;
+        } else {
+            System.out.println(rooms.get(currentRoom).getDescription());
         }
     }
 
@@ -109,7 +110,6 @@ public class GameManager {
         }
     }
 
-    
     public static void printPersonas() {
         System.out.println("Lista degli npcs:");
         for (Map.Entry<Integer, Persona> entry : npcs.entrySet()) {
@@ -120,6 +120,7 @@ public class GameManager {
                     + " room: " + persona.getRoom());
         }
     }
+
     public static int getCurrentRoom() {
         return currentRoom;
     }
@@ -136,7 +137,7 @@ public class GameManager {
         GameManager.rooms = rooms;
     }
 
-    public static void loadPersonas(Map<Integer, Persona> persona) {     
+    public static void loadPersonas(Map<Integer, Persona> persona) {
         GameManager.npcs = persona;
     }
 }

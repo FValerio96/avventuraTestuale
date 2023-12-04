@@ -1,10 +1,10 @@
 package com.mycompany.avventuratestualejava;
 
+import static com.mycompany.manager.GameManager.cambioStanza;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
 
 public class Parser {
 
@@ -19,19 +19,23 @@ public class Parser {
         this.noObjAction = Loader.loadDictionary("noObjAction");
     }
 
+    public static void noObjActionContains() {
+
+    }
+
     //main for testing
     public static void main(String[] args) {
         Parser p = new Parser();
     }
 
-    public String parserGame(String input) {
+    public void parserGame(String input) {
         convertiInMinuscolo(input);
         ArrayList<String> inputList = ottieniListaParole(input);
         rimuoviStopword(inputList);
         for (String parola : inputList) {
             System.out.println(parola + "\n");
         }
-        return checkWords(inputList);
+        checkWords(inputList);
     }
 
     public Map<String, List<String>> getNoObjAction() {
@@ -64,21 +68,22 @@ public class Parser {
         listaParole.removeAll(stopWord);
     }
 
-    public String checkWords(List<String> inputWords) {
+    public void checkWords(List<String> inputWords) {
+        /*
+        presa una chiave e la lista di valori associata, controllo se l'input
+        e' una dei sinonimi della chiave, restituisco la chiave.
+         */
         for (Map.Entry<String, List<String>> entry : directions.entrySet()) {
             String directionKey = entry.getKey();
             List<String> directionValues = entry.getValue();
 
             for (String inputWord : inputWords) {
                 if (directionValues.contains(inputWord)) {
-                    //delete me dopo aver testato tutto il codice
-                    //System.out.println("direzione " + directionKey);
-                    return directionKey;
+                    cambioStanza(inputWord);
                 }
             }
         }
-        return "ma come parli pirata?";
+        //return "ma come parli pirata?";
     }
 
-    
 }
