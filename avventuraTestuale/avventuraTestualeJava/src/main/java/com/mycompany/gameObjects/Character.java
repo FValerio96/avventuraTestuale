@@ -5,28 +5,17 @@
 package com.mycompany.gameObjects;
 
 public abstract class Character {
-    private final String id;
-    private final String frase;
-    private final Room room;
+    private final String name;
+    private final int id;
+    private final int room;
 
-    public Character(String id, String frase, Room room) {
+    public Character(int id, int room, String name) {
+        this.name = name;
         this.id = id;
-        this.frase = frase;
         this.room = room;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public String getFrase() {
-        return frase;
-    }
-
-    public Room getRoom() {
-        return room;
-    }
-    
     public abstract void eseguiAzione();
 }
 

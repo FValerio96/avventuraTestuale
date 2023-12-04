@@ -6,15 +6,25 @@ package com.mycompany.gameObjects;
 
 /**
  *
- * @author flava
+ * 
  */
 public class Object extends Character {
-    boolean takable;
-    boolean usable;
+    private boolean takable;
+    private boolean usable;
+    private final String description;
 
-    public Object(String id, String frase, Room room) {
-        super(id, frase, room);
+    public Object(boolean takable, boolean usable, String description, int id, int room, String name) {
+        super(id, room, name);
+        this.takable = takable;
+        this.usable = usable;
+        this.description = description;
     }
+
+    public static void main (String args[]) {
+        
+    } 
+
+    
 
     @Override
     public void eseguiAzione() {

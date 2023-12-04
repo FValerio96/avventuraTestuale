@@ -6,7 +6,7 @@ package com.mycompany.gameObjects;
 
 /**
  *
- * @author PPiC
+ * 
  */
 public class Room {
     private int id;

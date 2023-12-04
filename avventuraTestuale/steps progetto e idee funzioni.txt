@@ -77,6 +77,10 @@ IN FUTURO ALTRI METODI OFFLINE
 
 !!!INSERISCI IL FILEMANAGER PER CLIENT/SERVER E THREAD!!!
 
+04/12 
+introduzione kill: il pirata protagonista è un killer silenzioso, c'è possibilità di killare gli npc.
+
+
 
 
 

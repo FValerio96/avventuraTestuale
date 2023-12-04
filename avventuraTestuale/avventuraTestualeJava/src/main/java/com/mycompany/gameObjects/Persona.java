@@ -6,32 +6,32 @@ package com.mycompany.gameObjects;
 
 /**
  *
- * @author flava
+ *
  */
-public class Persona extends Character{
-    int health;
+public class Persona extends Character {
+
+    boolean alive = true;
+    String toSay;
     //Object object
-    
-     public Persona(String id, String frase, Room room, int health) {
-        super(id, frase, room);
-        this.health = health;
+
+    public Persona(String toSay, int id, int room, String name) {
+        super(id, room, name);
+        this.toSay = toSay;
     }
 
-    public int getHealth() {
-        return health;
+    public String getToSay() {
+        return toSay;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
     @Override
     public void eseguiAzione() {
-    /*
-        if(object is not null)
-            give the object
-            otherwise
-        sout    non ho niente per te.
-        */    
+        alive = false;
     }
     
+
+    public static void main(String args[]) {
+        Persona Gianni = new Persona("mi chiamo gianni", 1, 1,"Gianni");
+        System.out.println(Gianni.getToSay());
+    }
+
 }
