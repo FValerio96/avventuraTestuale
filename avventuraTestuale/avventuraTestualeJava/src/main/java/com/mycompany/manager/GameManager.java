@@ -27,7 +27,6 @@ public class GameManager {
     private static final Set<String> directions = Set.of("nord", "sud", "est", "ovest");
     //static Set<Item> items;
     private static String input;
-    private static String comando;
 
     public static void main(String[] args) throws JSONException, IOException {
         launcher();
@@ -40,7 +39,6 @@ public class GameManager {
             JsonReader.roomsInit();
             JsonReader.npcsInit();
             //aggiungi caricamento degli altri jsonObjects
-            printPersonas();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
@@ -52,8 +50,6 @@ public class GameManager {
             System.out.println("cosa vuoi fare capitano?");
             GameManager.input = scan.nextLine();
             parser.parserGame(input);
-            //System.out.println(comando);
-            //comandoManager(comando);
         }
     }
 
@@ -93,6 +89,15 @@ public class GameManager {
         }
     }
 
+    //elenca gli npc e/o ogegetti presenti nella room
+    public static void osserva() {
+        if(npcs.containsKey(currentRoom)){
+            System.out.println("vedo " + npcs.get(currentRoom).getName());
+        } else {
+            System.out.println("maledizione non c'è niente qui !");
+        }
+    }
+    
     public static void nuovaPartita() {
         //inizio gioco nella prima stanza.
         currentRoom = 1;
@@ -139,5 +144,13 @@ public class GameManager {
 
     public static void loadPersonas(Map<Integer, Persona> persona) {
         GameManager.npcs = persona;
+    }
+    
+    public static String getNpcNameInRoom(){
+        return npcs.get(currentRoom).getName();
+    }
+    
+    public static String getNpcToSayInRoom(){
+        return npcs.get(currentRoom).getToSay();
     }
 }
