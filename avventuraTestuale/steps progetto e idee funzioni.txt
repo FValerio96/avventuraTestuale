@@ -99,4 +99,9 @@ gestione oggetti
 
 PROBLEMA: SE VOGLIO CERCARE IN BASE ALLA ROOM OGGETTI E PERSONE LA CHIAVE DEI LORO MAP
 DEVE ESSERE PROPRIO LA ROOM IN CUI SI TROVANO (SEGUE CHE NON POSSO AVERE PIU DI UNA PERSONA
-O OGGETTO PER STANZA)
+O OGGETTO PER STANZA) - !!!FATTO!!!
+
+!tramutato objActionParsing in uno switch case e ogni azione è una funzione apposita
+
+did: gestione raccolta oggetti
+did: dai una bella controllata al gestore objnoaction

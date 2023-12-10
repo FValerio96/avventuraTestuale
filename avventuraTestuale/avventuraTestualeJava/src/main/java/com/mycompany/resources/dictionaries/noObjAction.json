@@ -7,5 +7,11 @@
         "esamina",
         "esamina la stanza",
         "osserva"
+    ],
+    "inventario": [
+        "borsa",
+        "cartella",
+        "baule",
+        "inventario"
     ]
 }

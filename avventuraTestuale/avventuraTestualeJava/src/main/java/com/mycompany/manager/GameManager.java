@@ -42,18 +42,16 @@ public class GameManager {
             JsonReader.roomsInit();
             JsonReader.npcsInit();
             JsonReader.stuffInit();
-            printPersonas();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
-            System.out.println(getNpcNameInRoom());
         } catch (JSONException | IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE,
                     "Errore durante la letture di un json",
                     ex.getMessage());
         }
         while (true) {
-            System.out.println("cosa vuoi fare capitano?");
+            System.out.println("\n cosa vuoi fare capitano?");
             GameManager.input = scan.nextLine();
             parser.parserGame(input);
         }
@@ -97,10 +95,18 @@ public class GameManager {
 
     //elenca gli npc e/o ogegetti presenti nella room
     public static void osserva() {
+        int is = 0;
+        if (stuffs.containsKey(currentRoom)) {
+            System.out.println("c'è un "
+                    + stuffs.get(currentRoom).getName() + "\n");
+            is++;
+        }
         if (npcs.containsKey(currentRoom)) {
             System.out.println("vedo " + npcs.get(currentRoom).getName());
-        } else {
-            System.out.println("maledizione non c'è niente qui !");
+            is++;
+        }
+        if (is == 0) {
+            System.out.println("maledizione non c'è niente e nessuno qui !");
         }
     }
 
@@ -149,6 +155,24 @@ public class GameManager {
         }
     }
 
+    public static void printInventory() {
+        System.out.println("INVENTARIO: \n");
+        boolean empty = true;
+        for (Map.Entry<Integer, Stuff> entry : stuffs.entrySet()) {
+            int stuffID = entry.getKey();
+            Stuff stuff = entry.getValue();
+            if (stuff.getInventory()) {
+                empty = false;
+                System.out.println("Nome: " + stuff.getName() + 
+                        ", descrizione: " + stuff.getDescription());
+            }
+
+        }
+        if(empty) {
+            System.out.println("Inventario vuoto.. ");
+        }
+    }
+
     public static int getCurrentRoom() {
         return currentRoom;
     }
@@ -179,10 +203,15 @@ public class GameManager {
     }
 
     public static String getStuffNameInRoom() {
-        return npcs.get(currentRoom).getName();
+        Stuff stuff = stuffs.get(currentRoom);
+        return stuff != null ? stuff.getName() : "null";
     }
 
     public static String getNpcToSayInRoom() {
         return npcs.get(currentRoom).getToSay();
+    }
+
+    public static void raccogli() {
+        stuffs.get(currentRoom).eseguiAzione();
     }
 }
