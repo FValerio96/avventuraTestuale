@@ -6,7 +6,7 @@ package com.mycompany.gameObjects;
 
 /**
  *
- * @author PPiC
+ * 
  */
 public class Room {
     private int id;
@@ -28,7 +28,7 @@ public class Room {
         this.nord = north;
         this.est = east;
         this.ovest = weast;
-        this.est = east;
+        this.sud = sud;
     }
 
     public void checkCreatedRoom(){

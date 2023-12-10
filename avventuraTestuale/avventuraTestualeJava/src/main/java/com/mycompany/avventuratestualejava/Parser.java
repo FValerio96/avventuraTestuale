@@ -1,133 +1,146 @@
 package com.mycompany.avventuratestualejava;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import com.mycompany.manager.GameManager;
+import static com.mycompany.manager.GameManager.cambioStanza;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Scanner;
 
-/**
- *
- * @author
- */
-/**
- * idea: presa la frase, si procede con una rimozione di stopwords ed una
- * conversione al minuscolo. A quel punto: 1. controllo se è uno spostamento 2.
- * controllo se ci sono parole nella frase sufficienti a compiere un' azione,
- * come "osserva" 3. altrimenti vedo se sono in una frase composta "usa +
- * oggetto"
- *
- */
 public class Parser {
 
-    //to do usa una file di stopword, le carichi in una lista e confronti
-    private static Map<String, List<String>> stopWord;
-    //azione che non necessità di un contesto, come "osserva"
-    private static Map<String, List<String>> noObjAction;
-    //azione che necessità di un soggetto come "usa + oggetto da usare"
-    private static Map<String, List<String>> ObjAction;
-    private static String directionPattern = "(nord)|(sud)|(est)|(ovest)";
+    private ArrayList<String> stopWord;
+    private Map<String, List<String>> directions;
+    private Map<String, List<String>> noObjAction;
+    private Map<String, List<String>> ObjAction;
 
     public Parser() {
-        this.stopWord = Loader.loadDictionary("stopWord");
+        this.stopWord = Loader.loadList("stopWords");
+        this.directions = Loader.loadDictionary("directions");
         this.noObjAction = Loader.loadDictionary("noObjAction");
+        this.ObjAction = Loader.loadDictionary("objAction");
     }
 
-    //metodo del parser per riconoscere il comando e (TODO) lo lancia
+    public static void noObjActionContains() {
+
+    }
+
+    //main for testing
+    public static void main(String[] args) {
+        Parser p = new Parser();
+    }
+
     public void parserGame(String input) {
         convertiInMinuscolo(input);
-        List<String> inputList = ottieniListaParole(input);
-        rimuoviStopword(inputList, stopWord);
-        System.out.println(checkWords(inputList));
+        ArrayList<String> inputList = ottieniListaParole(input);
+        rimuoviStopword(inputList);
+        for (String parola : inputList) {
+            System.out.println(parola + "\n");
+        }
+        checkWords(inputList);
     }
 
-    
-    public static Map<String, List<String>> getStopWord() {
-        return stopWord;
-    }
-
-    public static void setStopWord(Map<String, List<String>> stopWord) {
-        Parser.stopWord = stopWord;
-    }
-
-    public static Map<String, List<String>> getNoObjAction() {
+    public Map<String, List<String>> getNoObjAction() {
         return noObjAction;
     }
 
-    public static void setNoObjAction(Map<String, List<String>> noObjAction) {
-        Parser.noObjAction = noObjAction;
+    public void setNoObjAction(Map<String, List<String>> noObjAction) {
+        this.noObjAction = noObjAction;
     }
 
-    public static Map<String, List<String>> getObjAction() {
+    public Map<String, List<String>> getObjAction() {
         return ObjAction;
     }
 
-    public static void setObjAction(Map<String, List<String>> ObjAction) {
-        Parser.ObjAction = ObjAction;
+    public void setObjAction(Map<String, List<String>> ObjAction) {
+        this.ObjAction = ObjAction;
     }
 
-    public static String getDirectionPattern() {
-        return directionPattern;
+    private void convertiInMinuscolo(String input) {
+        input.toLowerCase();
     }
 
-    public static void setDirectionPattern(String directionPattern) {
-        Parser.directionPattern = directionPattern;
-    }
-
-    /*
-    public static void main(String[] args) {
-        Parser parser = new Parser();
-        List<String> phrases = new ArrayList<>();
-        phrases.add("pls");
-        phrases.add("guarda");
-        parser.parserGame(phrases);
-    } */
-
-    private static String convertiInMinuscolo(String input) {
-        return input.toLowerCase();
-    }
-
-    private static List<String> ottieniListaParole(String frase) {
+    private ArrayList<String> ottieniListaParole(String frase) {
         String[] arrayParole = frase.split("\\s+");
-        List<String> listaParole = Arrays.asList(arrayParole);
+        ArrayList<String> listaParole = new ArrayList<>(Arrays.asList(arrayParole));
         return listaParole;
     }
 
-    private static void rimuoviStopword(List<String> listaParole,
-            Map<String, List<String>> stopWord) {
-        for (List<String> stopWordsList : stopWord.values()) {
-            listaParole.removeAll(stopWordsList);
-        }
+    private void rimuoviStopword(ArrayList<String> listaParole) {
+        listaParole.removeAll(stopWord);
     }
 
-    //metodo che ricerca le keywords nella frase in input.
-    public String checkWords(List<String> inputWords) {
-        // Controlla se nella lista c'è una delle directionPattern
-        for (String word : inputWords) {
-            Pattern pattern = Pattern.compile(directionPattern);
-            Matcher matcher = pattern.matcher(word.toLowerCase());
-            if (matcher.matches()) {
-                return word; // Ritorna la stringa corrispondente alla direzione
+    public void checkWords(List<String> inputWords) {
+        /*
+        presa una chiave e la lista di valori associata, controllo se l'input
+        e' una dei sinonimi della chiave, restituisco la chiave.
+         */
+        boolean find = false;
+        //check spostamento direzione
+        for (Map.Entry<String, List<String>> entry : directions.entrySet()) {
+            String directionKey = entry.getKey();
+            List<String> directionValues = entry.getValue();
+
+            for (String inputWord : inputWords) {
+                if (directionValues.contains(inputWord)) {
+                    cambioStanza(inputWord);
+                    find = true;
+                    return;
+                }
             }
         }
-
-        // Controlla se la lista contiene una parola presente in noObjAction
+        //check noObjAction
         for (Map.Entry<String, List<String>> entry : noObjAction.entrySet()) {
-            List<String> actionWords = entry.getValue();
-            for (String word : inputWords) {
-                if (actionWords.contains(word.toLowerCase())) {
-                    return entry.getKey(); // Ritorna la chiave associata alla parola trovata in noObjAction
+            String noObjActionKey = entry.getKey();
+            List<String> noObjActionValues = entry.getValue();
+
+            for (String inputWord : inputWords) {
+                if (noObjActionValues.contains(inputWord)) {
+                    GameManager.osserva();
+                    find = true;
+                    return;
                 }
             }
         }
 
-        return "ritenta";
+        //check se è una objAction
+        for (Map.Entry<String, List<String>> entry : ObjAction.entrySet()) {
+            String objActionKey = entry.getKey();
+            List<String> objActionValues = entry.getValue();
+            
+            for(String inputWord : inputWords) 
+                if(objActionValues.contains(inputWord)) {
+                    //l'azione passata è la chiave in modo che il metodo al 
+                    //parsing basti riconoscere la parola e non i suoi sinonimi.
+                    objActionParsing(objActionKey, inputWords);
+                    find = true;
+                    return;
+                    
+                }
+                
+            }
+            
+        System.out.println("ma come parli pirata?");
+    }
+    
+    /*il metodo controlla preso il comando se il character (o figli) 
+      presenti nella stanza sono nella frase
+    */
+    private void objActionParsing(String action , List<String> inputWords){
+        Scanner scan = new Scanner(System.in);
+        if (action.equals("parla")) {
+                if(inputWords.contains(GameManager.getNpcNameInRoom())){
+                    System.out.println(GameManager.getNpcToSayInRoom());              
+                } else {
+                    System.out.println("vedo " + GameManager.getNpcNameInRoom()
+                            + " vuoi parlare con lui? \n digita s per il si"
+                                    + "altrimenti sarà no.");
+                    if(scan.nextLine().equals("s")) {
+                        System.out.println(GameManager.getNpcToSayInRoom()); 
+                    }          
+                }
+        }
     }
 
 }

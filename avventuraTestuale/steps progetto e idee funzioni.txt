@@ -1,0 +1,95 @@
+22/11
+TO DO: mettiti in condizione di testare il parser
+cosa mi serve?
+comandi minimi testabili di tre tipi:
+1) sposta
+2) comando singola azione "osserva"
+3) comando composto "parla con bruno"
+
+idea: cicla sulla lista di parole, per ogni parola fai una ricerca esaustiva per vedere
+se è negli alias delle action. se individui l'action, spezza.
+primo check: direction
+secondo check: no obj action
+
+gestione comando in combo con obj:
+metodo che preso in input una parola, cerca un oggetto idoneo nella lista delle parole per concatenare.
+
+per gestire il parser devo proseguire nella realizzazione del gioco:
+primo step: creazione stanze
+
+TODO: gestisci anche le directions con un Map
+
+mi servirà l'engine per testare
+
+implementazione DB caricara i dati dei gameobjects
+
+frase inizio gioco
+"Ciao marinaio! sei in mare aperto e temo che ci siamo persi. Che guaio! Come al solito direi ..",
+
+23/11
+
+IMP
+-le rooms create vanno al gamemanager
+-avendo la classe Room 4 attributi di tipo int per le rooms collegate e la classe 
+ gameManager un set di rooms contenente le stanza. Il gameManager garantirà lo spostamento
+ prelevando l'id della stanza verso la quale sta andando dalla currentRoom e aggiornando 
+ il current room di conseguenza. 
+ Potresti fare un metodo updateRoom che oltre ad aggiornare la Room stampi la description di questa.
+
+!! GAMEMANAGER POSSIEDE AL MOMENTO UN SET DI ROOM, MA TI SERVE UN MAP PER MANTERE IL CHIAVE VALORE DOVE
+   <CHIAVE:ID_STANZA, VALORE: ROOM> !! - RISOLTO
+ 
+NEXT STEP
+-crea le stanze DID
+-portati a poter far muovere il personaggio.
+
+hai ottenuto errore perchè non hai mai inserito le stopword - TODO
+rendi stopword una lista e caricala da json facendo apposita funzione nel loadder
+||valuta di accorpare loader e jsonReader.||
+
+27/11 
+nel launcher sto splittando tra nuova e carica partita(da gestire dopo)
+
+devi, semplicemente, gestire lo spostamento e le azioni partendo da una corretta definizione di checkwords.
+checkWords = metodo di ritrovamento dell'azione da compiere nel gioco, suddiviso in
+1.spostamento 
+2. azione 
+3. azione su oggetto TO DO
+ad 1, 2 e 3 corrisponderò una chiamata ad un metodo di GameManager che gestisce gli avvenimenti. 
+(Studia bene come concatenare il passaggio del controllo tra le due classi)
+
+parti dal pressuposto che ora il parser fornisce una ArrayList di parole minuscole senza stopword
+
+allora, il gamemanager in un ciclo infinito esegue ad ogni iterazione parsergame fornendogli l'input
+parser game restituisce il comando che corrisponderà alle chiavi dei dizionari, 
+quindi i sinonimi interessano solo al parser e il gamemanager se ne disinteressa.
+
+gestisci il gamemanager e le room, 
+devi capire come gestire le room e l'occorrenza della current room
+idea: current room int 
+e introduzione del metodo che dato l'id di una room ti stampa la descrizione, in futuro servirà questo metodo anche per avere
+gli npc e items nella stanza. ottimo lavoro !
+
+
+!!!INTERFACCIA!!!
+IMPLEMENTAZIONE DI DIVERSI METODI DI CARICA/SALVA ATTRAVERSO DIVERSI MODI: DB E UN ALTRO(ALLA PEGGIO SEGNALA LA POSSIBILITA' DI AGGIUNGERE
+IN FUTURO ALTRI METODI OFFLINE	
+
+!!!INSERISCI IL FILEMANAGER PER CLIENT/SERVER E THREAD!!!
+
+04/12 
+introduzione kill: il pirata protagonista è un killer silenzioso, c'è possibilità di killare gli npc.
+
+!!!IDEE INTERFACCIA
+ 1. INSERIMENTO ANIMALI FRA LE ISOLE
+ 2. INSERIMENTO BARCHE 
+ 3. UPGRADE NPC TRA BUONI E CATTIVI, I BUONI SONO KILLABILI I CATTIVI NO PIù EVENUTALI ALTRE MODIFICHE
+ 4. INVENTARIO CHE SI DIVIDE IN INVENTARIO PLAYER E INVENTARIO COMMERCIANTI
+
+settare parla con npc controllando se l'npc è nella stanza (controllo esaustivo)
+si torna sul parser: spostamento di comandoManager nel parser
+
+10/12
+gestione oggetti
+- visione inventario = stampa di tutto il map di oggetti i quali hanno inventari = true.
+- caricamento oggetti fatto - gestire raccolta e visione inventario

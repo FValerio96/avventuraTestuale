@@ -1,9 +1,12 @@
-com\mycompany\avventuratestualejava\AvventuraTestualeJava.class
-com\mycompany\avventuratestualejava\action\Directions.class
-com\mycompany\avventuratestualejava\action\Noun.class
 com\mycompany\gameObjects\Room.class
+com\mycompany\gameObjects\Persona.class
 com\mycompany\avventuratestualejava\Parser.class
 com\mycompany\manager\Engine.class
-com\mycompany\avventuratestualejava\Loader.class
+com\mycompany\gameObjects\Character.class
 com\mycompany\utilities\JsonReader.class
+com\mycompany\utilities\NewJFrame.class
+com\mycompany\avventuratestualejava\AvventuraTestualeJava.class
+com\mycompany\gameObjects\Stuff.class
+com\mycompany\utilities\NewJFrame$1.class
+com\mycompany\avventuratestualejava\Loader.class
 com\mycompany\manager\GameManager.class

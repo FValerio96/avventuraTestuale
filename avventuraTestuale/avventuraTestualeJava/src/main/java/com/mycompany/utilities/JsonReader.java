@@ -5,14 +5,12 @@
 package com.mycompany.utilities;
 
 import com.mycompany.gameObjects.Room;
+import com.mycompany.gameObjects.Persona;
+import com.mycompany.gameObjects.Stuff;
 import com.mycompany.manager.GameManager;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,19 +19,22 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.apache.commons.io.IOUtils;
 
-/**
- * @author PPiC
- */
 public class JsonReader {
 
-    private static String roomPath = "src\\main\\java\\com\\mycompany\\resources\\gameObjectsJson\\room.json";
-  
+    private static final String roomPath = "src\\main\\java\\com\\mycompany\\resources\\gameObjectsJson\\room.json";
+    private static final String npcsPath = "src\\main\\java\\com\\mycompany\\resources\\gameObjectsJson\\persona.json";
+    private static final String stuffsPath = "src\\main\\java\\com\\mycompany\\resources\\gameObjectsJson\\stuff.json";
+    
     //main per il testing
     public static void main(String[] args) throws JSONException, IOException {
-        
+
     }
- 
-    //funzione di caricamento dei dati delle stanza ad inizio gioco
+
+    /*
+    I metodi init leggono da un json le informazioni, caricano in una
+    struttura d'appoggio le stesse e tramite metodi statitici messi a 
+    disposizione dal GameManager gli passano le strutture caricate.
+    */
     public static void roomsInit() throws JSONException, IOException {
         JSONArray rooms = readFile(roomPath);
         Map<Integer, Room> roomsMap = new HashMap<>();
@@ -49,9 +50,44 @@ public class JsonReader {
             int west = room.getInt("west");
             Room roomObj = new Room(id, name, description);
             roomObj.addDirections(north, east, west, south);
-            roomsMap.put(id, roomObj);        }
+            roomsMap.put(id, roomObj);
+        }
         //passo il set di stanze create al gameManager
         GameManager.loadRooms(roomsMap);
+    }
+
+    public static void npcsInit() throws JSONException, IOException {
+        JSONArray npcs = readFile(npcsPath);
+        Map<Integer, Persona> npcsMap = new HashMap<>();
+
+        for (int i = 0; i < npcs.length(); i++) {
+            JSONObject npc = npcs.getJSONObject(i);
+            int id = npc.getInt("id");
+            String name = npc.getString("name");
+            String toSay = npc.getString("toSay");
+            int Room = npc.getInt("room");
+            Persona persona = new Persona(toSay, id, Room, name);
+            npcsMap.put(id, persona);
+        }
+        //passo il set di stanze create al gameManager
+        GameManager.loadPersonas(npcsMap);
+    }
+    
+    public static void stuffInit() throws JSONException, IOException {
+        JSONArray stuffs = readFile(stuffsPath);
+        Map<Integer, Stuff> stuffsMap = new HashMap<>();
+        
+        for(int i = 0; i < stuffs.length(); i++) {
+            JSONObject stuff = stuffs.getJSONObject(i);
+            String name = stuff.getString("name");
+            int id = stuff.getInt("id");
+            int room = stuff.getInt("room");
+            boolean takable = stuff.getBoolean("takable");
+            String description = stuff.getString("description");
+            Stuff obj = new Stuff(takable, description, id, room, name);
+            stuffsMap.put(id, obj);
+        }
+        GameManager.loadStuff(stuffsMap);
     }
 
     public static JSONArray readFile(String path) throws JSONException, IOException {
@@ -67,7 +103,7 @@ public class JsonReader {
 
 }
 
-    /*
+/*
     public static void test () throws JSONException, IOException {
         JSONArray jsonArray = readFile(roomPath);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -90,4 +126,4 @@ public class JsonReader {
             }
         }
     }
-*/
+ */
