@@ -23,12 +23,12 @@ import org.json.JSONException;
 public class GameManager {
 
     private static int currentRoom;
-    private static Map<Integer, Persona> npcs;
     private static Map<Integer, Room> rooms;
+    //N.B. npcs e stuffs hanno chiave la room in cui si trovano
+    private static Map<Integer, Persona> npcs;
     private static Map<Integer, Stuff> stuffs;
     private static final Set<String> directions = Set.of("nord", "sud",
             "est", "ovest");
-    //static Set<Item> items;
     private static String input;
 
     public static void main(String[] args) throws JSONException, IOException {
@@ -42,12 +42,11 @@ public class GameManager {
             JsonReader.roomsInit();
             JsonReader.npcsInit();
             JsonReader.stuffInit();
-            printstuffs();
-            //aggiungi caricamento degli altri jsonObjects
+            printPersonas();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
-
+            System.out.println(getNpcNameInRoom());
         } catch (JSONException | IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE,
                     "Errore durante la letture di un json",
@@ -117,7 +116,7 @@ public class GameManager {
         for (Map.Entry<Integer, Room> entry : rooms.entrySet()) {
             int roomId = entry.getKey();
             Room room = entry.getValue();
-            System.out.println("ID: " + roomId + ", Nome: " + room.getName()
+            System.out.println("ID: " + room.getId() + ", Nome: " + room.getName()
                     + ", Descrizione: " + room.getDescription() + ", nord:"
                     + room.getNord() + ", est: " + room.getEst() + ", ovest: "
                     + room.getOvest() + ", sud: " + room.getSud());
@@ -129,7 +128,7 @@ public class GameManager {
         for (Map.Entry<Integer, Persona> entry : npcs.entrySet()) {
             int personaID = entry.getKey();
             Persona persona = entry.getValue();
-            System.out.println("ID: " + personaID + ", Nome: "
+            System.out.println("ID: " + persona.getId() + ", Nome: "
                     + persona.getName() + ", to say: " + persona.getToSay()
                     + " room: " + persona.getRoom());
         }
@@ -175,6 +174,11 @@ public class GameManager {
     }
 
     public static String getNpcNameInRoom() {
+        Persona npc = npcs.get(currentRoom);
+        return npc != null ? npc.getName() : "null";
+    }
+
+    public static String getStuffNameInRoom() {
         return npcs.get(currentRoom).getName();
     }
 

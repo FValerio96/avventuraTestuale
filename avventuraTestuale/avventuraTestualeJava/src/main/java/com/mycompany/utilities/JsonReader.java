@@ -65,9 +65,9 @@ public class JsonReader {
             int id = npc.getInt("id");
             String name = npc.getString("name");
             String toSay = npc.getString("toSay");
-            int Room = npc.getInt("room");
-            Persona persona = new Persona(toSay, id, Room, name);
-            npcsMap.put(id, persona);
+            int room = npc.getInt("room");
+            Persona persona = new Persona(toSay, id, room, name);
+            npcsMap.put(room, persona);
         }
         //passo il set di stanze create al gameManager
         GameManager.loadPersonas(npcsMap);
@@ -85,7 +85,7 @@ public class JsonReader {
             boolean takable = stuff.getBoolean("takable");
             String description = stuff.getString("description");
             Stuff obj = new Stuff(takable, description, id, room, name);
-            stuffsMap.put(id, obj);
+            stuffsMap.put(room, obj);
         }
         GameManager.loadStuff(stuffsMap);
     }

@@ -22,10 +22,6 @@ public class Parser {
         this.ObjAction = Loader.loadDictionary("objAction");
     }
 
-    public static void noObjActionContains() {
-
-    }
-
     //main for testing
     public static void main(String[] args) {
         Parser p = new Parser();
@@ -108,38 +104,51 @@ public class Parser {
         for (Map.Entry<String, List<String>> entry : ObjAction.entrySet()) {
             String objActionKey = entry.getKey();
             List<String> objActionValues = entry.getValue();
-            
-            for(String inputWord : inputWords) 
-                if(objActionValues.contains(inputWord)) {
+
+            for (String inputWord : inputWords) {
+                if (objActionValues.contains(inputWord)) {
                     //l'azione passata è la chiave in modo che il metodo al 
                     //parsing basti riconoscere la parola e non i suoi sinonimi.
                     objActionParsing(objActionKey, inputWords);
                     find = true;
                     return;
-                    
+
                 }
-                
             }
-            
+
+        }
+
         System.out.println("ma come parli pirata?");
     }
-    
+
     /*il metodo controlla preso il comando se il character (o figli) 
       presenti nella stanza sono nella frase
-    */
-    private void objActionParsing(String action , List<String> inputWords){
+     */
+    private void objActionParsing(String action, List<String> inputWords) {
         Scanner scan = new Scanner(System.in);
+        //GESTIONE PARLA
         if (action.equals("parla")) {
-                if(inputWords.contains(GameManager.getNpcNameInRoom())){
-                    System.out.println(GameManager.getNpcToSayInRoom());              
+            String npcInRoomName = GameManager.getNpcNameInRoom();
+            if (npcInRoomName.equals("null")) {
+                System.out.println("non c'è nessuno con cui parlare qui");
+            } else {
+                if (inputWords.contains(GameManager.getNpcNameInRoom())) {
+                    System.out.println(GameManager.getNpcToSayInRoom());
                 } else {
                     System.out.println("vedo " + GameManager.getNpcNameInRoom()
                             + " vuoi parlare con lui? \n digita s per il si"
-                                    + "altrimenti sarà no.");
-                    if(scan.nextLine().equals("s")) {
-                        System.out.println(GameManager.getNpcToSayInRoom()); 
-                    }          
+                            + "altrimenti sarà no.");
+                    if (scan.nextLine().equals("s")) {
+                        System.out.println(GameManager.getNpcToSayInRoom());
+                    }
                 }
+            }
+
+        } else {
+            //GESTIONE RACCOGLI 
+            if (action.equals("raccogli")) {
+                //if(inputWords.contains(GameManager.))
+            }
         }
     }
 

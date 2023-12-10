@@ -93,3 +93,10 @@ si torna sul parser: spostamento di comandoManager nel parser
 gestione oggetti
 - visione inventario = stampa di tutto il map di oggetti i quali hanno inventari = true.
 - caricamento oggetti fatto - gestire raccolta e visione inventario
+- da gestire: e se non ci fosse nessuno o niente nella room?
+ -> in caso di persona o stanza vuota si restituisce null 
+	AGGIUNGI CONTROLLO CONSEGUENTE
+
+PROBLEMA: SE VOGLIO CERCARE IN BASE ALLA ROOM OGGETTI E PERSONE LA CHIAVE DEI LORO MAP
+DEVE ESSERE PROPRIO LA ROOM IN CUI SI TROVANO (SEGUE CHE NON POSSO AVERE PIU DI UNA PERSONA
+O OGGETTO PER STANZA)
