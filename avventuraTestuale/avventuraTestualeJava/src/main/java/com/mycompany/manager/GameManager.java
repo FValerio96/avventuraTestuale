@@ -42,6 +42,7 @@ public class GameManager {
             JsonReader.roomsInit();
             JsonReader.npcsInit();
             JsonReader.stuffInit();
+            printRooms();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
@@ -86,7 +87,7 @@ public class GameManager {
         //gestione caso fuori mappa
         if (currentRoom == 0) {
             System.out.println("questa strada non mi porterà da nessuna "
-                    + "parte.. \n resterò qui. \n");
+                    + "parte.. \n resterò qui. ");
             currentRoom = temp;
         } else {
             System.out.println(rooms.get(currentRoom).getDescription());
@@ -98,7 +99,7 @@ public class GameManager {
         int is = 0;
         if (stuffs.containsKey(currentRoom)) {
             System.out.println("c'è un "
-                    + stuffs.get(currentRoom).getName() + "\n");
+                    + stuffs.get(currentRoom).getName());
             is++;
         }
         if (npcs.containsKey(currentRoom)) {
@@ -119,14 +120,11 @@ public class GameManager {
 
     public static void printRooms() {
         System.out.println("Lista delle stanze:");
-        for (Map.Entry<Integer, Room> entry : rooms.entrySet()) {
-            int roomId = entry.getKey();
-            Room room = entry.getValue();
-            System.out.println("ID: " + room.getId() + ", Nome: " + room.getName()
-                    + ", Descrizione: " + room.getDescription() + ", nord:"
-                    + room.getNord() + ", est: " + room.getEst() + ", ovest: "
-                    + room.getOvest() + ", sud: " + room.getSud());
-        }
+        rooms.forEach((roomId, room)
+                -> System.out.println("ID: " + room.getId() + ", Nome: " + room.getName()
+                        + ", Descrizione: " + room.getDescription() + ", nord:"
+                        + room.getNord() + ", est: " + room.getEst() + ", ovest: "
+                        + room.getOvest() + ", sud: " + room.getSud()));
     }
 
     public static void printPersonas() {
@@ -163,12 +161,12 @@ public class GameManager {
             Stuff stuff = entry.getValue();
             if (stuff.getInventory()) {
                 empty = false;
-                System.out.println("Nome: " + stuff.getName() + 
-                        ", descrizione: " + stuff.getDescription());
+                System.out.println("Nome: " + stuff.getName()
+                        + ", descrizione: " + stuff.getDescription());
             }
 
         }
-        if(empty) {
+        if (empty) {
             System.out.println("Inventario vuoto.. ");
         }
     }
