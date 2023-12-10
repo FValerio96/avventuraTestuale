@@ -30,7 +30,7 @@ public class Stuff extends Character {
     public boolean getInventory() {
         return inventory;
     }
-
+    
     //metodo di raccolta oggetto
     @Override
     public void eseguiAzione() {

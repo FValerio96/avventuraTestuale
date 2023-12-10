@@ -23,12 +23,12 @@ import org.json.JSONException;
 public class GameManager {
 
     private static int currentRoom;
-    private static Map<Integer, Persona> npcs;
     private static Map<Integer, Room> rooms;
+    //N.B. npcs e stuffs hanno chiave la room in cui si trovano
+    private static Map<Integer, Persona> npcs;
     private static Map<Integer, Stuff> stuffs;
     private static final Set<String> directions = Set.of("nord", "sud",
             "est", "ovest");
-    //static Set<Item> items;
     private static String input;
 
     public static void main(String[] args) throws JSONException, IOException {
@@ -42,19 +42,16 @@ public class GameManager {
             JsonReader.roomsInit();
             JsonReader.npcsInit();
             JsonReader.stuffInit();
-            printstuffs();
-            //aggiungi caricamento degli altri jsonObjects
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
-
         } catch (JSONException | IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE,
                     "Errore durante la letture di un json",
                     ex.getMessage());
         }
         while (true) {
-            System.out.println("cosa vuoi fare capitano?");
+            System.out.println("\n cosa vuoi fare capitano?");
             GameManager.input = scan.nextLine();
             parser.parserGame(input);
         }
@@ -98,10 +95,18 @@ public class GameManager {
 
     //elenca gli npc e/o ogegetti presenti nella room
     public static void osserva() {
+        int is = 0;
+        if (stuffs.containsKey(currentRoom)) {
+            System.out.println("c'è un "
+                    + stuffs.get(currentRoom).getName() + "\n");
+            is++;
+        }
         if (npcs.containsKey(currentRoom)) {
             System.out.println("vedo " + npcs.get(currentRoom).getName());
-        } else {
-            System.out.println("maledizione non c'è niente qui !");
+            is++;
+        }
+        if (is == 0) {
+            System.out.println("maledizione non c'è niente e nessuno qui !");
         }
     }
 
@@ -117,7 +122,7 @@ public class GameManager {
         for (Map.Entry<Integer, Room> entry : rooms.entrySet()) {
             int roomId = entry.getKey();
             Room room = entry.getValue();
-            System.out.println("ID: " + roomId + ", Nome: " + room.getName()
+            System.out.println("ID: " + room.getId() + ", Nome: " + room.getName()
                     + ", Descrizione: " + room.getDescription() + ", nord:"
                     + room.getNord() + ", est: " + room.getEst() + ", ovest: "
                     + room.getOvest() + ", sud: " + room.getSud());
@@ -129,7 +134,7 @@ public class GameManager {
         for (Map.Entry<Integer, Persona> entry : npcs.entrySet()) {
             int personaID = entry.getKey();
             Persona persona = entry.getValue();
-            System.out.println("ID: " + personaID + ", Nome: "
+            System.out.println("ID: " + persona.getId() + ", Nome: "
                     + persona.getName() + ", to say: " + persona.getToSay()
                     + " room: " + persona.getRoom());
         }
@@ -147,6 +152,24 @@ public class GameManager {
                     + stuff.getTakable() + " inventory: "
                     + stuff.getInventory());
 
+        }
+    }
+
+    public static void printInventory() {
+        System.out.println("INVENTARIO: \n");
+        boolean empty = true;
+        for (Map.Entry<Integer, Stuff> entry : stuffs.entrySet()) {
+            int stuffID = entry.getKey();
+            Stuff stuff = entry.getValue();
+            if (stuff.getInventory()) {
+                empty = false;
+                System.out.println("Nome: " + stuff.getName() + 
+                        ", descrizione: " + stuff.getDescription());
+            }
+
+        }
+        if(empty) {
+            System.out.println("Inventario vuoto.. ");
         }
     }
 
@@ -175,10 +198,20 @@ public class GameManager {
     }
 
     public static String getNpcNameInRoom() {
-        return npcs.get(currentRoom).getName();
+        Persona npc = npcs.get(currentRoom);
+        return npc != null ? npc.getName() : "null";
+    }
+
+    public static String getStuffNameInRoom() {
+        Stuff stuff = stuffs.get(currentRoom);
+        return stuff != null ? stuff.getName() : "null";
     }
 
     public static String getNpcToSayInRoom() {
         return npcs.get(currentRoom).getToSay();
+    }
+
+    public static void raccogli() {
+        stuffs.get(currentRoom).eseguiAzione();
     }
 }
