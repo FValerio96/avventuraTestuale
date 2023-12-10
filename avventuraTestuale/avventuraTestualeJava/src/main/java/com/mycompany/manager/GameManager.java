@@ -86,7 +86,7 @@ public class GameManager {
         //gestione caso fuori mappa
         if (currentRoom == 0) {
             System.out.println("questa strada non mi porterà da nessuna "
-                    + "parte.. \n resterò qui. \n");
+                    + "parte.. \n resterò qui. ");
             currentRoom = temp;
         } else {
             System.out.println(rooms.get(currentRoom).getDescription());
@@ -98,7 +98,7 @@ public class GameManager {
         int is = 0;
         if (stuffs.containsKey(currentRoom)) {
             System.out.println("c'è un "
-                    + stuffs.get(currentRoom).getName() + "\n");
+                    + stuffs.get(currentRoom).getName());
             is++;
         }
         if (npcs.containsKey(currentRoom)) {
