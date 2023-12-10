@@ -9,7 +9,6 @@ package com.mycompany.gameObjects;
  *
  */
 public class Persona extends Character {
-
     boolean alive = true;
     String toSay;
     //Object object

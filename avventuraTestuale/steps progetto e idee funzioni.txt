@@ -88,3 +88,8 @@ introduzione kill: il pirata protagonista è un killer silenzioso, c'è possibil
 
 settare parla con npc controllando se l'npc è nella stanza (controllo esaustivo)
 si torna sul parser: spostamento di comandoManager nel parser
+
+10/12
+gestione oggetti
+- visione inventario = stampa di tutto il map di oggetti i quali hanno inventari = true.
+- caricamento oggetti fatto - gestire raccolta e visione inventario
