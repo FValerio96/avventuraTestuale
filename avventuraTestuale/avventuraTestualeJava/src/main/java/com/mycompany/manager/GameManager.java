@@ -32,7 +32,7 @@ public class GameManager {
     private static String input;
 
     public static void main(String[] args) throws JSONException, IOException {
-        
+        FileManager.fileCheck();
         launcher();
     }
 
