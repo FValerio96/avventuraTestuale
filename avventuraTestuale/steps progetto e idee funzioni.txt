@@ -107,3 +107,7 @@ did: gestione raccolta oggetti
 did: dai una bella controllata al gestore objnoaction
 
 lambda expression in printroom e loadlist.
+
+11/12
+inserimento del filemanager e server : c/s
+- rimozione di risorse file
