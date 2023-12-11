@@ -1,0 +1,9 @@
+[
+    {
+        "name": "mappa",
+        "id": 1,
+        "room": 2,
+        "takable": true,
+        "description": "con questa potrò orientarmi meglio"       
+    }
+]

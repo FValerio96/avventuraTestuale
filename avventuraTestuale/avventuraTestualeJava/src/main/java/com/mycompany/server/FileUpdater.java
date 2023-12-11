@@ -28,17 +28,9 @@ public class FileUpdater {
     private static DataOutputStream dataOutputStream = null;
     private static DataInputStream dataInputStream = null;
 
-    private static final String osservaPath = "./src/main/java/com/mycompany/server/resources/osserva.txt";
-    private static File osserva = new File(osservaPath);
-    private static final String parlaPath = "./src/main/java/com/mycompany/server/resources/parla.txt";
-    private static File parla = new File(parlaPath);
-    private static final String prendiPath = "./src/main/java/com/mycompany/server/resources/prendi.txt";
-    private static File prendi = new File(prendiPath);
-    private static final String usaPath = "./src/main/java/com/mycompany/server/resources/usa.txt";
-    private static File usa = new File(usaPath);
-    private static final String vaiPath = "./src/main/java/com/mycompany/server/resources/vai.txt";
-    private static File vai = new File(vaiPath);
     private static final String roomPath = "./src/main/java/com/mycompany/server/resources/room.json";
+    private static final String npcsPath = "./src/main/java/com/mycompany/server/resources/Persona.json";
+    private static final String stuffsPath = "./src/main/java/com/mycompany/server/resources/stuff.json"; 
 
     public static void main(String[] args) {
         try ( ServerSocket serverSocket = new ServerSocket(5000)) {
@@ -102,14 +94,10 @@ public class FileUpdater {
 
     private static List<String> getPathList() {
         List<String> pathList = new ArrayList<>();
-        pathList.add(osserva.getPath());
-        pathList.add(parlaPath);
-        pathList.add(prendiPath);
-        pathList.add(usaPath);
-        pathList.add(vaiPath);
         pathList.add(roomPath);
+        pathList.add(stuffsPath);
+        pathList.add(npcsPath);
         
-
         return pathList;
     }
 
