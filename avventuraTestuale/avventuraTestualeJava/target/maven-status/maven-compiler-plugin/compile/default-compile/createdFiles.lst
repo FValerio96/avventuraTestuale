@@ -4,9 +4,10 @@ com\mycompany\avventuratestualejava\Parser.class
 com\mycompany\manager\Engine.class
 com\mycompany\gameObjects\Character.class
 com\mycompany\utilities\JsonReader.class
-com\mycompany\utilities\NewJFrame.class
+com\mycompany\server\FileUpdater.class
+com\mycompany\manager\FileManager.class
 com\mycompany\avventuratestualejava\AvventuraTestualeJava.class
 com\mycompany\gameObjects\Stuff.class
-com\mycompany\utilities\NewJFrame$1.class
+com\mycompany\server\RequestThread.class
 com\mycompany\avventuratestualejava\Loader.class
 com\mycompany\manager\GameManager.class
