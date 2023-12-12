@@ -18,5 +18,9 @@
     "mappa",
     "map",
     "cartina"
-    ]
+    ],
+    "musica": [
+    "musica",
+    "player",
+    "lettore"]
 }

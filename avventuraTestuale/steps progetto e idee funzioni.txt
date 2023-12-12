@@ -115,7 +115,10 @@ inserimento del filemanager e server : c/s
 
 12/12
 aggiunta gui mappa
-
+aggiunta musica, in caso di musica attiva e chiusura della finestra di musica si apre una
+finestra di alert che chiede se si vuole stoppare la musica, per farlo si usa una 
+CLASSE ANONIMA
+.
 
 
 

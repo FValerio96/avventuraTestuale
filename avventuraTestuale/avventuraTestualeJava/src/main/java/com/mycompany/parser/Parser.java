@@ -1,6 +1,7 @@
 package com.mycompany.parser;
 
 import com.mycompany.gui.MapFrame;
+import com.mycompany.gui.MusicFrame;
 import com.mycompany.utilities.Loader;
 import com.mycompany.manager.GameManager;
 import static com.mycompany.manager.GameManager.cambioStanza;
@@ -133,6 +134,9 @@ public class Parser {
             case "mappa":
                 apriMappa();
                 break;
+            case "musica":
+                apriMusica();
+                break;
         }
     }
 
@@ -193,4 +197,7 @@ public class Parser {
         MapFrame.Mappa();
     }
 
+    private void apriMusica() {
+        MusicFrame.avviaMusica();
+    }
 }
