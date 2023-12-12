@@ -30,7 +30,6 @@ public class FileManager {
     private static DataInputStream dataInputStream = null;
 
     public static void main(String args[]) {
-        System.out.println("ciao");
         fileCheck();
     }
 
