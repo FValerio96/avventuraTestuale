@@ -1,5 +1,7 @@
-package com.mycompany.avventuratestualejava;
+package com.mycompany.parser;
 
+import com.mycompany.gui.MapFrame;
+import com.mycompany.utilities.Loader;
 import com.mycompany.manager.GameManager;
 import static com.mycompany.manager.GameManager.cambioStanza;
 import java.util.ArrayList;
@@ -127,6 +129,10 @@ public class Parser {
                 break;
             case "inventario":
                 GameManager.printInventory();
+                break;
+            case "mappa":
+                apriMappa();
+                break;
         }
     }
 
@@ -181,6 +187,10 @@ public class Parser {
                 }
             }
         }
+    }
+    
+    private void apriMappa() {
+        MapFrame.Mappa();
     }
 
 }

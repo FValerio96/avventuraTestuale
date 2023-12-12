@@ -2,8 +2,8 @@ com\mycompany\gui\MapFrame$1.class
 com\mycompany\gameObjects\Room.class
 com\mycompany\gui\MapFrame$2.class
 com\mycompany\gameObjects\Persona.class
-com\mycompany\avventuratestualejava\Parser.class
 com\mycompany\manager\Engine.class
+com\mycompany\parser\Parser.class
 com\mycompany\gameObjects\Character.class
 com\mycompany\utilities\JsonReader.class
 com\mycompany\server\FileUpdater.class
@@ -12,5 +12,5 @@ com\mycompany\gui\MapFrame.class
 com\mycompany\gameObjects\Stuff.class
 com\mycompany\gui\test.class
 com\mycompany\server\RequestThread.class
-com\mycompany\avventuratestualejava\Loader.class
 com\mycompany\manager\GameManager.class
+com\mycompany\utilities\Loader.class

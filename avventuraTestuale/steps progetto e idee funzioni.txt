@@ -111,3 +111,17 @@ lambda expression in printroom e loadlist.
 11/12
 inserimento del filemanager e server : c/s
 - rimozione di risorse file
+
+
+12/12
+aggiunta gui mappa
+
+
+
+
+
+
+GUIDA AGGIUNTA NUOVI COMANDI
+1. AGGIUNGI IL COMANDO ED I SINONIMI NEL JSON 
+2. CREA LA FUNZIONE DEL COMANDO NEL PARSER
+3. CHIAMALA IN NOOBJPARSING SE E' SENZA OGGETTO O IN OBJPARSING SE CON OGGETTO

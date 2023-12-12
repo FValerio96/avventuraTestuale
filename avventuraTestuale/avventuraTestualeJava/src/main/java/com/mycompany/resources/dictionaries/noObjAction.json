@@ -13,5 +13,10 @@
         "cartella",
         "baule",
         "inventario"
+    ],
+    "mappa": [
+    "mappa",
+    "map",
+    "cartina"
     ]
 }

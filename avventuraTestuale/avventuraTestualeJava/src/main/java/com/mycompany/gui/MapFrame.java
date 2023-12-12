@@ -32,13 +32,13 @@ public class MapFrame extends javax.swing.JFrame {
         setTitle("Mappa");
 
         setSize(mapImg.getIconWidth(), mapImg.getIconHeight());
-
+        setVisible(true);
         setResizable(false);
 
         setLocationRelativeTo(null);
     }
 
-    public static void apriFinestra() {
+    public static void Mappa() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MapFrame().setVisible(true);

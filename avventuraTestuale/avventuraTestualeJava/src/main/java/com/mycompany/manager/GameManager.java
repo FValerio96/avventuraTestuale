@@ -4,7 +4,7 @@
  */
 package com.mycompany.manager;
 
-import com.mycompany.avventuratestualejava.Parser;
+import com.mycompany.parser.Parser;
 import com.mycompany.gameObjects.Room;
 import com.mycompany.gameObjects.Persona;
 import com.mycompany.gameObjects.Stuff;
@@ -43,7 +43,6 @@ public class GameManager {
             JsonReader.roomsInit();
             JsonReader.npcsInit();
             JsonReader.stuffInit();
-            printRooms();
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
