@@ -11,7 +11,16 @@ package com.mycompany.gameObjects;
 public class Persona extends Character {
     boolean alive = true;
     String toSay;
-    //Object object
+    public boolean isAlive;
+
+    public boolean isAlive() {
+        return alive;
+    }
+    
+    public void setDead() {
+        alive = false;
+    }
+    
 
     public Persona(String toSay, int id, int room, String name) {
         super(id, room, name);

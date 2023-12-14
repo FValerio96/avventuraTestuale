@@ -126,7 +126,7 @@ public class Parser {
     private void noObjActionParsing(String action) {
         switch (action) {
             case "osserva":
-                GameManager.osserva();
+                System.out.println(GameManager.getOsserva(GameManager.getCurrentRoom()));
                 break;
             case "inventario":
                 GameManager.printInventory();
@@ -153,6 +153,9 @@ public class Parser {
             case "raccogli":
                 raccogli(inputWords, scan);
                 break;
+            case "uccidi":
+                uccidi(inputWords, scan);
+                break;
 
         }
 
@@ -164,14 +167,46 @@ public class Parser {
             System.out.println("non c'è nessuno con cui parlare qui");
         } else {
             if (inputWords.contains(npcInRoomName)) {
-                System.out.println(GameManager.getNpcToSayInRoom());
-            } else {
-                System.out.println("vedo " + npcInRoomName
-                        + " vuoi parlare con lui? \n digita s per il si"
-                        + "altrimenti sarà no.");
-                if (scan.nextLine().equals("s")) {
+                if (GameManager.getNpcAliveInRoom()) {
                     System.out.println(GameManager.getNpcToSayInRoom());
+                } else {
+                    System.out.println("guarda che hai ucciso " + npcInRoomName + ".. (guarda che non è una cosa bella)");
                 }
+            } else {
+                if (GameManager.getNpcAliveInRoom()) {
+                    System.out.println("vedo " + npcInRoomName
+                            + " vuoi parlare con lui? \n digita s per il si"
+                            + "altrimenti sarà no.");
+                    if (scan.nextLine().equals("s")) {
+                        System.out.println(GameManager.getNpcToSayInRoom());
+                    }
+                } 
+            }
+        }
+    }
+    
+    private void uccidi(List<String> inputWords, Scanner scan) {
+        String npcInRoomName = GameManager.getNpcNameInRoom();
+        if (npcInRoomName.equals("null")) {
+            System.out.println("non c'è nessuno con cui da attaccare qui");
+        } else {
+            if (inputWords.contains(npcInRoomName)) {
+                if (GameManager.getNpcAliveInRoom()) {
+                    GameManager.setDeadNpcInRoom();
+                    System.out.println("ma che hai fatto? hai ucciso " + npcInRoomName);
+                } else {
+                    System.out.println("guarda che hai già ucciso " + npcInRoomName + ".. (guarda che non è una cosa bella)");
+                }
+            } else {
+                if (GameManager.getNpcAliveInRoom()) {
+                    System.out.println("vedo " + npcInRoomName
+                            + " vuoi attaccarlo? \n digita s per il si"
+                            + "altrimenti sarà no.");
+                    if (scan.nextLine().equals("s")) {
+                         GameManager.setDeadNpcInRoom();
+                         System.out.println("ma che hai fatto? hai ucciso " + npcInRoomName);
+                    }
+                } 
             }
         }
     }
@@ -192,7 +227,7 @@ public class Parser {
             }
         }
     }
-    
+
     private void apriMappa() {
         MapFrame.Mappa();
     }
