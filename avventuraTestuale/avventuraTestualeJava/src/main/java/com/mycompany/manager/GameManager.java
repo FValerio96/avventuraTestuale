@@ -208,7 +208,14 @@ public class GameManager {
         Persona npc = npcs.get(currentRoom);
         return npc != null ? npc.getName() : "null";
     }
+    
+    public static boolean getNpcAliveInRoom() {
+        return npcs.get(currentRoom).isAlive();
+    }
 
+    public static void setDeadNpcInRoom(){
+        npcs.get(currentRoom).setDead();
+    }
     public static String getStuffNameInRoom() {
         Stuff stuff = stuffs.get(currentRoom);
         return stuff != null ? stuff.getName() : "null";
