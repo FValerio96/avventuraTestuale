@@ -28,9 +28,7 @@ public class MusicFrame extends javax.swing.JFrame {
     public MusicFrame() {
         initComponents();
         setMusic();
-        setVisible(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
+
         addWindowListener(new WindowAdapter() {
 
             @Override
@@ -69,8 +67,10 @@ public class MusicFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MusicFrame musicFrame = new MusicFrame();
-                musicFrame.setLocationRelativeTo(null); // Imposta la posizione al centro dello schermo
+                musicFrame.setLocationRelativeTo(null); 
                 musicFrame.setVisible(true);
+                musicFrame.setResizable(false);
+                
             }
         });
     }

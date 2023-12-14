@@ -5,5 +5,12 @@
         "room": 2,
         "takable": true,
         "description": "con questa potrò orientarmi meglio"       
+    },
+    {
+        "name": "bandiera pirata",
+        "id": 2,
+        "room": 4,
+        "takable": true,
+        "description": "wow questa devo issarla sulla mia nave"
     }
 ]

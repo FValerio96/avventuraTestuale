@@ -126,7 +126,7 @@ public class Parser {
     private void noObjActionParsing(String action) {
         switch (action) {
             case "osserva":
-                GameManager.osserva();
+                System.out.println(GameManager.getOsserva(GameManager.getCurrentRoom()));                        
                 break;
             case "inventario":
                 GameManager.printInventory();

@@ -11,7 +11,7 @@
     {
         "id": 2,
         "name": "piccola isola",
-        "description": "attracchi su una minuscola isola, al centro c'è una palma e pensi: ''ci vorrebbe proprio un pò d'ombra ",
+        "description": "attracchi su una minuscola isola, al centro c'è una palma e pensi: 'ci vorrebbe proprio un pò d'ombra' ",
         "north": 0,
         "south": 1,
         "east": 0,

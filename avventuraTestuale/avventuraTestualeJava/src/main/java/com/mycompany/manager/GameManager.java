@@ -46,6 +46,9 @@ public class GameManager {
             //inizializzazione gioco diviso in nuova o carica partita
             //TODO: INSERISCI CARICA PARTITA
             nuovaPartita();
+            DBManager.DBStart();
+            DBManager.getRoomDescriptionFromDB();
+            //DBSTART
         } catch (JSONException | IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE,
                     "Errore durante la letture di un json",
@@ -90,31 +93,37 @@ public class GameManager {
                     + "parte.. \n resterò qui. ");
             currentRoom = temp;
         } else {
-            System.out.println(rooms.get(currentRoom).getDescription());
+            DBManager.getRoomDescriptionFromDB();
         }
     }
 
     //elenca gli npc e/o ogegetti presenti nella room
-    public static void osserva() {
+// Elenca gli npc e/o oggetti presenti nella room
+    public static String getOsserva(int room) {
+        StringBuilder oss = new StringBuilder();
         int is = 0;
-        if (stuffs.containsKey(currentRoom)) {
-            System.out.println("c'è un "
-                    + stuffs.get(currentRoom).getName());
+
+        if (stuffs.containsKey(room)) {
+            oss.append("c'è un ").append(stuffs.get(room).getName()).append("\n");
             is++;
         }
-        if (npcs.containsKey(currentRoom)) {
-            System.out.println("vedo " + npcs.get(currentRoom).getName());
+
+        if (npcs.containsKey(room)) {
+            oss.append("vedo ").append(npcs.get(room).getName()).append("\n");
             is++;
         }
+
         if (is == 0) {
-            System.out.println("maledizione non c'è niente e nessuno qui !");
+            oss.append("maledizione non c'è niente e nessuno qui !");
         }
+
+        return oss.toString();
     }
 
     private static void nuovaPartita() {
         //inizio gioco nella prima stanza.
         currentRoom = 1;
-        System.out.println(rooms.get(currentRoom).getDescription());
+        
 
     }
 
