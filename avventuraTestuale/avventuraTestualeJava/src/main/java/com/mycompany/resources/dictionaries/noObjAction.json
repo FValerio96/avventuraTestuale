@@ -22,5 +22,10 @@
     "musica": [
     "musica",
     "player",
-    "lettore"]
+    "lettore"],
+    "help": [
+    "aiuto",
+    "help"
+    ]
+
 }

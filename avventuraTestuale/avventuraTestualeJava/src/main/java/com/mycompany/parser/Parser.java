@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import com.mycompany.gui.Help;
 
 public class Parser {
 
@@ -137,6 +138,9 @@ public class Parser {
             case "musica":
                 apriMusica();
                 break;
+            case "help":
+                apriHelp();
+                break;
         }
     }
 
@@ -234,5 +238,9 @@ public class Parser {
 
     private void apriMusica() {
         MusicFrame.avviaMusica();
+    }
+    
+    private void apriHelp(){
+        Help.openHelpWindow();
     }
 }

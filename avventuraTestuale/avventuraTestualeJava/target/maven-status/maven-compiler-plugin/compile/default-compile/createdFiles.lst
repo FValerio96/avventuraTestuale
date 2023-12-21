@@ -16,9 +16,12 @@ com\mycompany\gameObjects\Room.class
 com\mycompany\gui\MusicFrame$5.class
 com\mycompany\parser\Parser.class
 com\mycompany\gui\MusicFrame$3.class
+com\mycompany\gui\Help.class
 com\mycompany\db\DBSystem.class
 com\mycompany\utilities\JsonReader.class
 com\mycompany\mediaPlayer\MediaPlayerThread.class
+com\mycompany\gui\Help$2.class
+com\mycompany\gui\Help$1.class
 com\mycompany\gui\MapFrame.class
 com\mycompany\gui\MusicFrame$2.class
 com\mycompany\gui\MusicFrame.class
