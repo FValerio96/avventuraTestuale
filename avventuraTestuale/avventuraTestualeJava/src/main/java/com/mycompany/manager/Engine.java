@@ -18,8 +18,8 @@ import org.json.JSONException;
 public class Engine {
 
     public static void main(String[] args) {
+        FileManager.fileCheck();
         GameManager.launcher();
     }
 
-    
 }

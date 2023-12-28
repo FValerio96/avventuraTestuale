@@ -1,8 +1,8 @@
 com\mycompany\gui\MusicFrame$4.class
 com\mycompany\gui\MapFrame$2.class
-com\mycompany\gameObjects\Persona.class
 com\mycompany\manager\Engine.class
 com\mycompany\gameObjects\Character.class
+com\mycompany\gameObjects\Npcs.class
 com\mycompany\server\FileUpdater.class
 com\mycompany\manager\FileManager.class
 com\mycompany\gui\MusicFrame$1.class

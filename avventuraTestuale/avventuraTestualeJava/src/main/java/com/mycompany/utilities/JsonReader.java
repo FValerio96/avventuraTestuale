@@ -5,7 +5,7 @@
 package com.mycompany.utilities;
 
 import com.mycompany.gameObjects.Room;
-import com.mycompany.gameObjects.Persona;
+import com.mycompany.gameObjects.Npcs;
 import com.mycompany.gameObjects.Stuff;
 import com.mycompany.manager.GameManager;
 import java.io.File;
@@ -58,7 +58,7 @@ public class JsonReader {
 
     public static void npcsInit() throws JSONException, IOException {
         JSONArray npcs = readFile(npcsPath);
-        Map<Integer, Persona> npcsMap = new HashMap<>();
+        Map<Integer, Npcs> npcsMap = new HashMap<>();
 
         for (int i = 0; i < npcs.length(); i++) {
             JSONObject npc = npcs.getJSONObject(i);
@@ -66,7 +66,7 @@ public class JsonReader {
             String name = npc.getString("name");
             String toSay = npc.getString("toSay");
             int room = npc.getInt("room");
-            Persona persona = new Persona(toSay, id, room, name);
+            Npcs persona = new Npcs(toSay, id, room, name);
             npcsMap.put(room, persona);
         }
         //passo il set di stanze create al gameManager
