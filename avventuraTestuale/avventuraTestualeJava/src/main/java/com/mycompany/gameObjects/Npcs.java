@@ -8,7 +8,7 @@ package com.mycompany.gameObjects;
  *
  *
  */
-public class Persona extends Character {
+public class Npcs extends Character {
     boolean alive = true;
     String toSay;
     public boolean isAlive;
@@ -22,7 +22,7 @@ public class Persona extends Character {
     }
     
 
-    public Persona(String toSay, int id, int room, String name) {
+    public Npcs(String toSay, int id, int room, String name) {
         super(id, room, name);
         this.toSay = toSay;
     }
@@ -38,7 +38,7 @@ public class Persona extends Character {
     
 
     public static void main(String args[]) {
-        Persona Gianni = new Persona("mi chiamo gianni", 1, 1,"Gianni");
+        Npcs Gianni = new Npcs("mi chiamo gianni", 1, 1,"Gianni");
         System.out.println(Gianni.getToSay());
     }
 

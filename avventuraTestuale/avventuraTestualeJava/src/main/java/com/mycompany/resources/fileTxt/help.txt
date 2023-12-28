@@ -1,0 +1,12 @@
+Lista comandi
+nord - vai a nord 
+sud - vai a sud
+est - vai ad est
+ovest - vai ad ovest
+osserva - guarda cosa c'è nella stanza
+inventario - guarda cosa possiedi
+mappa - visiona mappa
+musica - apri lettore musicale
+parla + personaggio - parla con personaggio
+raccogli + oggetto - raccogli oggetto e mettilo nella borsa
+uccidi + personaggio - uccidi personaggio

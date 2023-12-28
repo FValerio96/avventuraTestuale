@@ -6,7 +6,7 @@ package com.mycompany.manager;
 
 import com.mycompany.parser.Parser;
 import com.mycompany.gameObjects.Room;
-import com.mycompany.gameObjects.Persona;
+import com.mycompany.gameObjects.Npcs;
 import com.mycompany.gameObjects.Stuff;
 import com.mycompany.utilities.JsonReader;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class GameManager {
     private static int currentRoom;
     private static Map<Integer, Room> rooms;
     //N.B. npcs e stuffs hanno chiave la room in cui si trovano
-    private static Map<Integer, Persona> npcs;
+    private static Map<Integer, Npcs> npcs;
     private static Map<Integer, Stuff> stuffs;
     private static final Set<String> directions = Set.of("nord", "sud",
             "est", "ovest");
@@ -138,9 +138,9 @@ public class GameManager {
 
     public static void printPersonas() {
         System.out.println("Lista degli npcs:");
-        for (Map.Entry<Integer, Persona> entry : npcs.entrySet()) {
+        for (Map.Entry<Integer, Npcs> entry : npcs.entrySet()) {
             int personaID = entry.getKey();
-            Persona persona = entry.getValue();
+            Npcs persona = entry.getValue();
             System.out.println("ID: " + persona.getId() + ", Nome: "
                     + persona.getName() + ", to say: " + persona.getToSay()
                     + " room: " + persona.getRoom());
@@ -200,12 +200,12 @@ public class GameManager {
         GameManager.stuffs = stuff;
     }
 
-    public static void loadPersonas(Map<Integer, Persona> persona) {
+    public static void loadPersonas(Map<Integer, Npcs> persona) {
         GameManager.npcs = persona;
     }
 
     public static String getNpcNameInRoom() {
-        Persona npc = npcs.get(currentRoom);
+        Npcs npc = npcs.get(currentRoom);
         return npc != null ? npc.getName() : "null";
     }
     

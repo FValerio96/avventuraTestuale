@@ -84,4 +84,20 @@ public class Loader {
             }
         }
     }
+    
+       public static String getHelpText() {
+        StringBuilder content = new StringBuilder();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\main\\java\\com\\mycompany\\resources\\fileTxt\\help.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // In caso di errore, restituisci una stringa vuota o gestisci l'errore in modo appropriato
+        }
+
+        return content.toString();
+    }
 }
