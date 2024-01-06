@@ -4,6 +4,7 @@
  */
 package com.mycompany.manager;
 
+import com.mycompany.fileManager.FileManager;
 import com.mycompany.parser.Parser;
 import com.mycompany.gameObjects.Room;
 import com.mycompany.gameObjects.Persona;
