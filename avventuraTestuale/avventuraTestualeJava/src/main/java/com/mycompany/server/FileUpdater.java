@@ -4,7 +4,7 @@
  */
 package com.mycompany.server;
 
-import com.mycompany.manager.FileManager;
+import com.mycompany.fileManager.FileManager;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -28,9 +28,9 @@ public class FileUpdater {
     private static DataOutputStream dataOutputStream = null;
     private static DataInputStream dataInputStream = null;
 
-    private static final String roomPath = "./src/main/java/com/mycompany/server/resources/room.json";
-    private static final String npcsPath = "./src/main/java/com/mycompany/server/resources/Persona.json";
-    private static final String stuffsPath = "./src/main/java/com/mycompany/server/resources/stuff.json"; 
+    private static final String ROOM_PATH = "./src/main/java/com/mycompany/server/resources/room.json";
+    private static final String NPCS_PATH = "./src/main/java/com/mycompany/server/resources/Persona.json";
+    private static final String STUFFS_PATH = "./src/main/java/com/mycompany/server/resources/stuff.json"; 
 
     public static void main(String[] args) {
         try ( ServerSocket serverSocket = new ServerSocket(5000)) {
@@ -94,9 +94,9 @@ public class FileUpdater {
 
     private static List<String> getPathList() {
         List<String> pathList = new ArrayList<>();
-        pathList.add(roomPath);
-        pathList.add(stuffsPath);
-        pathList.add(npcsPath);
+        pathList.add(ROOM_PATH);
+        pathList.add(STUFFS_PATH);
+        pathList.add(NPCS_PATH);
         
         return pathList;
     }

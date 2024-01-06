@@ -17,14 +17,14 @@ import java.net.Socket;
  */
 public class RequestThread extends Thread {
 
-    private final Socket socket;
-    private final String path;
+    private final Socket SOCKET;
+    private final String PATH;
     private static DataInputStream dataInputStream = null;
     private static DataOutputStream dataOutputStream = null;
 
     public RequestThread(Socket socket, String path, DataOutputStream dataOutputStream) {
-        this.socket = socket;
-        this.path = path;
+        this.SOCKET = socket;
+        this.PATH = path;
         this.dataOutputStream = dataOutputStream;
 
     }
@@ -36,7 +36,7 @@ public class RequestThread extends Thread {
     public void run() {
         try {
             int bytes = 0;
-            File file = new File(path);
+            File file = new File(PATH);
             FileInputStream fileInputStream = new FileInputStream(file);
 
             // send file size

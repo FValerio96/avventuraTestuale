@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.manager;
+package com.mycompany.fileManager;
 
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
@@ -19,9 +19,9 @@ import java.util.Map;
 public class FileManager {
 
     private static final String RISORSE_FILE = "./src/main/java/com/mycompany/resources/gameObjectsJson";
-    private static final String roomPath = "./src/main/java/com/mycompany/resources/gameObjectsJson/room.json";
-    private static final String npcsPath = "./src/main/java/com/mycompany/resources/gameObjectsJson/Persona.json";
-    private static final String stuffsPath = "./src/main/java/com/mycompany/resources/gameObjectsJson/stuff.json";
+    private static final String ROOM_PATH = "./src/main/java/com/mycompany/resources/gameObjectsJson/room.json";
+    private static final String NPCS_PATH = "./src/main/java/com/mycompany/resources/gameObjectsJson/Persona.json";
+    private static final String STUFFS_PATH = "./src/main/java/com/mycompany/resources/gameObjectsJson/stuff.json";
 
     private static ArrayList<String> toDownload = new ArrayList();
     private static ArrayList<String> toCheck = new ArrayList();
@@ -50,20 +50,20 @@ public class FileManager {
 
         directoryCreator();
 
-        File room = new File(roomPath);
-        File npc = new File(npcsPath);
-        File stuff = new File(stuffsPath);
+        File room = new File(ROOM_PATH);
+        File npc = new File(NPCS_PATH);
+        File stuff = new File(STUFFS_PATH);
         
         if (!room.exists()) {
-            toDownload.add(roomPath);
+            toDownload.add(ROOM_PATH);
             System.out.println("file > osserva not found" + toDownload.get(0));
         }
         if (!npc.exists()) {
-            toDownload.add(npcsPath);
+            toDownload.add(NPCS_PATH);
             System.out.println("file > osserva not found" + toDownload.get(1));
         }
         if (!stuff.exists()) {
-            toDownload.add(stuffsPath);
+            toDownload.add(STUFFS_PATH);
             System.out.println("file > osserva not found" + toDownload.get(2));
         }
 
