@@ -91,18 +91,13 @@ l'utilizzo di un player musicale per un sottofondo musicale
 #
 
 ## Espressioni Lambda e classi anonime
-### espressione lambda in JsonReader
-All'interno della classe JsonReader ho utilizzato una lambda expression, quale:
-> inputList=IntStream.range(0, inputArray.length).mapToObj(k -> inputArray[k]).collect(Collectors.toList());"
-
-Attraverso essa è possibile estrarre dal campo Execute di ciascun npc una lista di input per ogni corrispettivo output, per l'interazione  coi diversi personaggi del gioco applicando una funzione di mapping a ogni elemento dello stream.
-## espressione lambda in Loader
+### espressione lambda in Loader
 nel metodo load list si è adoperata la seguente lambda expression :
 > br.lines().flatMap(line -> Arrays.stream(line.split("\\s+")))
                     .forEach(wordsList::add);
 
 questa lambda expression legge frasi da un BufferedReader, le divide in parole, e aggiunge queste parole ad una lista chiamata wordsList.
-## classe anonima 
+### classe anonima 
 è stata utilizzata una classe anonima per avere una finestra di alert nel momento in uci si prova a chiudere la finestra del lettore musicale senza che prima si sia stoppata la musica. 
 
 #
