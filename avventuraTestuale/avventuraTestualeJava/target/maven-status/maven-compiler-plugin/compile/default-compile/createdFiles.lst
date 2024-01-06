@@ -4,7 +4,6 @@ com\mycompany\gameObjects\Persona.class
 com\mycompany\manager\Engine.class
 com\mycompany\gameObjects\Character.class
 com\mycompany\server\FileUpdater.class
-com\mycompany\manager\FileManager.class
 com\mycompany\gui\MusicFrame$1.class
 com\mycompany\gameObjects\Stuff.class
 com\mycompany\server\RequestThread.class
@@ -12,6 +11,7 @@ com\mycompany\manager\DBManager.class
 com\mycompany\manager\GameManager.class
 com\mycompany\utilities\Loader.class
 com\mycompany\gui\MapFrame$1.class
+com\mycompany\fileManager\FileManager.class
 com\mycompany\gameObjects\Room.class
 com\mycompany\gui\MusicFrame$5.class
 com\mycompany\parser\Parser.class
